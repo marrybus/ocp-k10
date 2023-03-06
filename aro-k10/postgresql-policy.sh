@@ -5,7 +5,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Policy
 metadata:
-  name: yong-postgresql-backup
+  name: mariusz-postgresql-backup
   namespace: kasten-io
 spec:
   comment: ""
@@ -45,7 +45,7 @@ spec:
       - key: k10.kasten.io/appNamespace
         operator: In
         values:
-          - yong-postgresql
+          - mariusz-postgresql
 EOF
 
 sleep 5
@@ -60,6 +60,6 @@ metadata:
 spec:
   subject:
     kind: Policy
-    name: yong-postgresql-backup
+    name: mariusz-postgresql-backup
     namespace: kasten-io
 EOF

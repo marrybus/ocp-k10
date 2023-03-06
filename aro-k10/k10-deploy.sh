@@ -4,9 +4,9 @@ starttime=$(date +%s)
 # MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
 
 echo '-------Exporting the Azure Tenant, Client, Secret'
-AZURE_TENANT_ID=$(cat aro4yong1app | grep tenant | awk '{print $2}' | sed -e 's/\"//g')
-AZURE_CLIENT_ID=$(cat aro4yong1app | grep appId | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
-AZURE_CLIENT_SECRET=$(cat aro4yong1app | grep password | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+AZURE_TENANT_ID=$(cat aro4mariusz1app | grep tenant | awk '{print $2}' | sed -e 's/\"//g')
+AZURE_CLIENT_ID=$(cat aro4mariusz1app | grep appId | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+AZURE_CLIENT_SECRET=$(cat aro4mariusz1app | grep password | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
 
 # echo '-------Create a Azure Storage account'
 # ARO_RG=$(az group list -o table | grep aro-rg4yong1 | awk '{print $1}')
@@ -41,10 +41,10 @@ echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
 echo '-------Deploying a PostgreSQL database'
-kubectl create namespace yong-postgresql
-oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
+kubectl create namespace mariusz-postgresql
+oc adm policy add-scc-to-user anyuid -z default -n mariusz-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install --namespace yong-postgresql postgres bitnami/postgresql \
+helm install --namespace mariusz-postgresql postgres bitnami/postgresql \
   --set primary.persistence.size=1Gi
 # --set global.storageClass=managed-csi
 
@@ -82,6 +82,6 @@ endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
 echo "-------Total time for K10 deployment is $(($duration / 60)) minutes $(($duration % 60)) seconds."
 echo "" | awk '{print $1}'
-echo "-------Created by Yongkang"
-echo "-------Email me if any suggestions or issues he@yongkang.cloud"
+echo "-------Created by Yongkang, Modified by Mariusz Rybusinski"
+echo "-------Email me if any suggestions or issues mariuszr@outlook.com"
 echo "" | awk '{print $1}'

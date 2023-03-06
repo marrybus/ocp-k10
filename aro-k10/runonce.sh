@@ -7,6 +7,6 @@ metadata:
 spec:
   subject:
     kind: Policy
-    name: yong-postgresql-backup
+    name: mariusz-postgresql-backup
     namespace: kasten-io
 EOF

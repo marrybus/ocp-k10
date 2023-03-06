@@ -16,6 +16,6 @@ endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
 echo "-------Total time to clean up is $(($duration / 60)) minutes $(($duration % 60)) seconds."
 echo "" | awk '{print $1}'
-echo "-------Created by Yongkang"
-echo "-------Email me if any suggestions or issues he@yongkang.cloud"
+echo "-------Created by Yongkang, Modified by Mariusz Rybusinski"
+echo "-------Email me if any suggestions or issues mariuszr@outlook.com"
 echo "" | awk '{print $1}'

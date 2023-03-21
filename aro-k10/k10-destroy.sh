@@ -3,9 +3,9 @@ starttime=$(date +%s)
 
 echo '-------Deleting Postgresql and Kasten K10'
 
-helm uninstall postgres -n mariusz-postgresql
+helm uninstall postgres -n $ARO_MY_PREFIX-postgresql
 helm uninstall k10 -n kasten-io
-kubectl delete ns mariusz-postgresql
+kubectl delete ns $ARO_MY_PREFIX-postgresql
 kubectl delete ns kasten-io
 
 echo '-------Deleting objects from Azure Blob Storage Bucket'

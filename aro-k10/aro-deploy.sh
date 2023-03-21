@@ -8,35 +8,35 @@ az group create \
 
 az network vnet create \
   --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP \
-  --name aro-vnet4mariusz1 \
+  --name $ARO_VNET \
   --address-prefixes 10.8.0.0/23
 
 az network vnet subnet create \
   --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP \
-  --vnet-name aro-vnet4mariusz1 \
-  --name master-subnet4mariusz1 \
+  --vnet-name $ARO_VNET \
+  --name master-$ARO_SUBNET \
   --address-prefixes 10.8.0.0/24 \
   --service-endpoints Microsoft.ContainerRegistry
 
 az network vnet subnet create \
   --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP \
-  --vnet-name aro-vnet4mariusz1 \
-  --name worker-subnet4mariusz1 \
+  --vnet-name $ARO_VNET \
+  --name worker-$ARO_SUBNET \
   --address-prefixes 10.8.1.0/24 \
   --service-endpoints Microsoft.ContainerRegistry
 
 az network vnet subnet update \
-  --name master-subnet4mariusz1 \
+  --name master-$ARO_SUBNET \
   --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP \
-  --vnet-name aro-vnet4mariusz1 \
+  --vnet-name $ARO_VNET \
   --disable-private-link-service-network-policies true
 
 az aro create \
   --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP \
   --name $ARO_MY_CLUSTER \
-  --vnet aro-vnet4mariusz1 \
-  --master-subnet master-subnet4mariusz1 \
-  --worker-subnet worker-subnet4mariusz1 \
+  --vnet $ARO_VNET \
+  --master-subnet master-$ARO_SUBNET \
+  --worker-subnet worker-$ARO_SUBNET \
   --pull-secret @pull-secret.txt
 
 echo '-------Create a Azure Storage account'

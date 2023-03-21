@@ -1,18 +1,16 @@
-#### Follow [@YongkangHe](https://linktr.ee/yongkang) on Linktree, Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 I just want to build an Azure Red Hat OpenShift Cluster to play with the various Data Management capabilities e.g. Container's Backup/Restore, Disaster Recovery and Application Mobility. 
 
 It is challenging to create an ARO cluster from Azure Cloud if you are not familiar to it. After the ARO Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
 
-![image](https://pbs.twimg.com/media/FYfpuo1WIAEu8BZ?format=jpg&name=small)
 
-This script based automation allows you to build a Ready-to-Use Kasten K10 demo environment running on ARO Cluster on Azure in about 35 minutes. In order to demonstrate Container Backup capabilities, an Azure Blob Storage account will be created. And this will be built in a new vnet with new subnets etc.. This is bash shell based scripts which has been tested on Azure Cloud Shell in the West US region. 
+This script based automation allows you to build a Ready-to-Use Kasten K10 demo environment running on ARO Cluster on Azure in about 35 minutes. In order to demonstrate Container Backup capabilities, an Azure Blob Storage account will be created. And this will be built in a new vnet with new subnets etc.. This is bash shell based scripts which has been tested on Azure Cloud Shell in the West Europe region. 
 
 # Here're the preparation tasks. 
 1. Log in to https://portal.azure.com, then open Azure Cloud Shell
 2. Clone the github repo to your local host, run below command
 ````
-git clone https://github.com/yongkanghe/ocp-k10.git
+git clone https://github.com/marrybus/ocp-k10.git
 ````
 3. Complete the preparation tasks first
 ````
@@ -46,36 +44,17 @@ vim setenv.sh
 |                           | 2. Remove Kasten K10                 |    + Remove the disks and snapshots |
 |                           | 3. Remove Azure Blob storage bucket  |    + Remove the storage account etc.|
 
-# Automate ARO, PostgreSQL and K10
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/52OESS1h2F0/0.jpg)](https://www.youtube.com/watch?v=52OESS1h2F0)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Build an OCP cluster via Web Console
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/FDvY9PSxgAQ/0.jpg)](https://www.youtube.com/watch?v=FDvY9PSxgAQ)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
-
-# Backup/restore containers on OCP Cluster
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zMKIOCuEPyI/0.jpg)](https://www.youtube.com/watch?v=zMKIOCuEPyI)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
-
-# Migrate containers on OCP Cluster
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mjG-GOnJ-Lo/0.jpg)](https://www.youtube.com/watch?v=mjG-GOnJ-Lo)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # For more details about OCP Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
 
 https://blog.kasten.io/kasten-and-red-hat-migration-and-backup-for-openshift
 
-# Kubernetes / Kasten Learning
-http://k8s.yongkang.cloud
-
-# Earn Kubernetes Badges
-https://lnkd.in/gpptXmnY
-
 # Kasten - No. 1 Kubernetes Backup
 https://kasten.io 
 
 # Contributors
 
-#### Follow [@YongkangHe](https://linktr.ee/yongkang) on Linktree, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
+#### Created by [@YongkangHe](https://linktr.ee/yongkang) on Linktree, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
+#### Modified by Mariusz Rybusiński (https://www.linkedin.com/in/rybusinski/) 

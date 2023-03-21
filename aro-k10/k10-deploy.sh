@@ -41,10 +41,10 @@ echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
 echo '-------Deploying a PostgreSQL database'
-kubectl create namespace mariusz-postgresql
-oc adm policy add-scc-to-user anyuid -z default -n mariusz-postgresql
+kubectl create namespace $ARO_MY_PREFIX-postgresql
+oc adm policy add-scc-to-user anyuid -z default -n $ARO_MY_PREFIX-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install --namespace mariusz-postgresql postgres bitnami/postgresql \
+helm install --namespace $ARO_MY_PREFIX-postgresql postgres bitnami/postgresql \
   --set primary.persistence.size=1Gi
 # --set global.storageClass=managed-csi
 

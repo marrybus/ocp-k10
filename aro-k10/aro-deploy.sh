@@ -42,7 +42,10 @@ az aro create \
 echo '-------Create a Azure Storage account'
 ARO_RG=$(az group list -o table | grep $ARO_MY_GROUP | awk '{print $1}')
 az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
-echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
+ARO_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
+echo $ARO_STORAGE_KEY > aro_az_storage_key
+#echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
+az storage container create --account-name $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --account-key $ARO_AZURE_STORAGE_KEY --name $ARO_MY_PREFIX-$ARO_MY_CONTAINER
 
 # oc annotate sc managed-premium storageclass.kubernetes.io/is-default-class-
 # oc annotate sc managed-csi storageclass.kubernetes.io/is-default-class=true
@@ -56,7 +59,9 @@ oc login $apiServer -u kubeadmin -p $PASSWORD --insecure-skip-tls-verify
 echo "" | awk '{print $1}'
 oc get no
 
-aroui=$(az aro list | grep $ARO_MY_CLUSTER | awk '{print $6}')
+#aroui=$(az aro list | grep $ARO_MY_CLUSTER | awk '{print $6}')
+#aroui=$(az aro list | awk '/url/{i++}i==2{print $2; exit}'| sed -e 's/\"//g')
+aroui=$(az aro show -g $ARO_MY_PREFIX-$ARO_MY_GROUP -n $ARO_MY_CLUSTER --query consoleProfile.url -o tsv)
 echo -e "\nCopy the password before clicking the link to access OpenShift Web Console" > aro_ui_token
 echo -e "\nThe Username is kubeadmin and the Password is as below" >> aro_ui_token
 echo -e "\n$PASSWORD" >> aro_ui_token

@@ -42,10 +42,10 @@ az aro create \
 echo '-------Create a Azure Storage account'
 ARO_RG=$(az group list -o table | grep $ARO_MY_GROUP | awk '{print $1}')
 az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
-ARO_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
-echo $ARO_STORAGE_KEY > aro_az_storage_key
+ARO_AZURE_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
+echo $ARO_AZURE_STORAGE_KEY > aro_az_storage_key
 #echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
-az storage container create --account-name $ARO_MY_PREFIX-$ARO_AZURE_STORAGE_ACCOUNT_ID --account-key $ARO_AZURE_STORAGE_KEY --name $ARO_MY_PREFIX-$ARO_MY_CONTAINER
+az storage container create --account-name $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --account-key $ARO_AZURE_STORAGE_KEY --name $ARO_MY_PREFIX-$ARO_MY_CONTAINER
 
 # oc annotate sc managed-premium storageclass.kubernetes.io/is-default-class-
 # oc annotate sc managed-csi storageclass.kubernetes.io/is-default-class=true
